@@ -1,0 +1,71 @@
+https://drive.google.com/file/d/1q-lUf2nIIYnIKARhQUy2IAoGZwyboSSs/view?usp=drivesdk
+Mulai
+Deklarasi matriks A, B, dan Hasil
+Input Orde Matriks (n)
+
+Jika n < 3 maka
+    Tampilkan "Orde matriks minimal adalah 3x3"
+    Kembali ke Mulai
+Akhir Jika
+
+Input matriks A (n x n)
+Input matriks B (n x n)
+
+Jika Kolom A != Baris B maka
+    Tampilkan "Matriks tidak dapat dikalikan"
+    Kembali ke Mulai
+Akhir Jika
+
+Inisialisasi matriks Hasil dengan ukuran n x n
+
+Untuk i dari 0 sampai n-1 lakukan
+    Untuk j dari 0 sampai n-1 lakukan
+        Hasil[i][j] = 0
+        Untuk k dari 0 sampai n-1 lakukan
+            Hasil[i][j] = Hasil[i][j] + A[i][k] * B[k][j]
+        Akhir Untuk
+    Akhir Untuk
+Akhir Untuk
+
+Tampilkan Matriks Hasil
+Selesai
+def input_matrix(n):
+matrix = []
+for i in range(n):
+row = list(map(int, input(f"Input row {i + 1} (separated by space): ").split()))
+matrix.append(row)
+return matrix
+
+def multiply_matrices(A, B):
+n = len(A)
+result = [[0 for _ in range(n)] for _ in range(n)]
+
+for i in range(n):
+    for j in range(n):
+        for k in range(n):
+            result[i][j] += A[i][k] * B[k][j]
+return result
+def main():
+n = int(input("Input order of matrices (min 3): "))
+
+if n < 3:
+    print("Orde matriks minimal adalah 3x3")
+    return
+
+print("Input matriks A:")
+A = input_matrix(n)
+
+print("Input matriks B:")
+B = input_matrix(n)
+
+if len(A[0]) != len(B):
+    print("Matriks tidak dapat dikalikan")
+    return
+
+hasil = multiply_matrices(A, B)
+
+print("Matriks Hasil:")
+for row in hasil:
+    print(" ".join(map(str, row)))
+if name == "main":
+main()
